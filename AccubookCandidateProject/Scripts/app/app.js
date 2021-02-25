@@ -1,7 +1,7 @@
 class App {
     constructor() {
         this.bookings = ko.observableArray([]);
-        this.newBooking = new Booking(0, "", new Date(), new Date(), 0, "");
+        this.newBooking = new Booking(0, "", new Date(), new Date(), 0, 0, "");
         this.reviews = ko.observableArray([
             new Review('Henry K.', 'I enjoyed my stay, the view was pleasant.', 4),
             new Review('John M.', 'The location was beautiful!', 3),
@@ -16,15 +16,6 @@ class App {
     }
     saveBooking(newBooking) {
         // your code here
-        $.ajax({
-            type: "POST",
-            url: "/api/booking",
-            data: newBooking,
-            success: () => {
-                alert("Booking added!");
-            },
-            dataType: "json"
-        });
     }
     averageRating() {
         // your code here
@@ -36,12 +27,13 @@ class App {
     }
 }
 class Booking {
-    constructor(id, name, arrival, departure, rate, hotelName) {
+    constructor(id, name, arrival, departure, rate, hotelId, hotelName) {
         this.id = id;
         this.name = name;
         this.arrival = arrival;
         this.departure = departure;
-        this.nightRate = rate;
+        this.rate = rate;
+        this.hotelId = hotelId;
         this.hotelName = hotelName;
     }
     getTotal() {
