@@ -21,10 +21,11 @@ namespace AccubookCandidateProject.Controllers
                     Name = h.Name,
                     Address = h.Address,
                     TimesBooked = db.Bookings.Where(b => b.HotelId == h.Id).Count(),
+                    TotalBookingsValue = db.Bookings.Where(b => b.HotelId == h.Id).Sum(x => x.Rate)
                 };
-            }
-
-            return View();
+                hotelDTOs.Add(dto);
+            };
+            return View(hotelDTOs);
 
             // your code here - optimize existing code & add any missing code
         }
