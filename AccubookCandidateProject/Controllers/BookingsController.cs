@@ -19,8 +19,11 @@ namespace AccubookCandidateProject.Controllers
         public async Task<IHttpActionResult> GetBookings()
         {
             // your code goes here
+            List<Booking> bookinglist = new List<Booking>() { new Booking() { Id = 1, Name = "Test", HotelId = 1, Rate = 100, Arrival = DateTime.Now, Departure = DateTime.Now  } };
+            // your code goes here
 
-            return Ok();
+            return Ok(bookinglist);
+           
         }
 
         [System.Web.Http.HttpPost]
